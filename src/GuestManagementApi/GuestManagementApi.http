@@ -1,0 +1,44 @@
+@GuestManagementApi_HostAddress = http://localhost:5013
+
+### Add a new guest
+POST {{GuestManagementApi_HostAddress}}/api/Guests/AddGuest
+Content-Type: application/json
+
+{
+  "firstname": "John",
+  "lastname": "Cena",
+  "birthDate": "1990-01-01",
+  "email": "john.cena@example.com",
+  "phoneNumbers": ["123-456-7890"]
+}
+
+### Add another guest
+POST {{GuestManagementApi_HostAddress}}/api/Guests/AddGuest
+Content-Type: application/json
+
+{
+  "firstname": "Dwayne",
+  "lastname": "Johnson",
+  "birthDate": "1980-02-19",
+  "email": "dwayne.johnson@example.com",
+  "phoneNumbers": ["987-654-3210", "555-666-7777"]
+}
+
+### After creating a guest with the AddGuest endpoint, 
+### copy the guestId from the API response and set the guestId value here
+@guestId = 334be853-dd5e-45c4-9930-4c07f7e81f0b
+
+### Add a phone number to an existing guest
+POST {{GuestManagementApi_HostAddress}}/api/Guests/AddPhone
+Content-Type: application/json
+
+{
+  "guestId": "{{guestId}}", 
+  "phoneNumber": "222-333-4444"
+}
+
+### Get a guest by ID
+GET {{GuestManagementApi_HostAddress}}/api/Guests/{{guestId}}
+
+### Get all guests
+GET {{GuestManagementApi_HostAddress}}/api/Guests
